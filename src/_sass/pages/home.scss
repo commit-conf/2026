@@ -1,0 +1,329 @@
+@use "../layout/responsive";
+
+.hero {
+  --hero-title-size: var(--font-size-5xl);
+  --hero-min-height: calc(100vh - 11.7rem);
+  --hero-button-font-size: calc(
+    clamp(var(--font-size-xl), 2vw, var(--font-size-3xl))
+  );
+  --hero-subtitle-size: calc(
+    clamp(var(--font-size-4xl), 5vw, var(--font-size-6xl))
+  );
+  --hero-button-padding: calc(clamp(var(--padding-2), 1.8vw, var(--padding-6)));
+  --hero-shadow: 0 0 3rem rgba(0, 0, 50, 0.8);
+
+  justify-content: center;
+  align-items: center;
+  min-height: var(--hero-min-height);
+  z-index: 1;
+  background-color: var(--color-lime-400);
+  position: relative;
+}
+
+.hero-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5);
+}
+
+.hero-text {
+  z-index: 1;
+}
+
+.hero-logo {
+  width: calc(max(50%, 20rem));
+}
+
+/*
+.hero-title {
+  font-size: var(--hero-title-size);
+
+  color: var(--color-white);
+  background: var(--color-black);
+  padding: 0 1rem;
+
+  .highlight {
+    color: var(--color-primary-bg);
+    background-color: transparent;
+  }
+}
+*/
+.hero-subtitle {
+  font-size: var(--hero-subtitle-size);
+  color: var(--color-white);
+  margin-top: 1vw;
+  margin-bottom: 0;
+  text-shadow: var(--hero-shadow);
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gap-3);
+
+  > .button {
+    padding: var(--hero-button-padding) calc(var(--hero-button-padding) * 1.5);
+    font-size: var(--hero-button-font-size);
+    margin: 0;
+    box-shadow: var(--hero-shadow);
+  }
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2);
+}
+
+.stat-label {
+  font-size: var(--font-size-l);
+  text-transform: uppercase;
+  line-height: var(--line-height-6);
+  //color: var(--color-gray-900);
+  font-weight: bold;
+  &.light {
+    //color: var(--color-gray-800);
+  }
+}
+
+.stat-value {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  line-height: var(--line-height-snug);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-topbar-bg);
+  color: var(--color-topbar-fg);
+  padding: var(--padding-4) var(--padding-0);
+  gap: var(--gap-3);
+  & .stat {
+    --stat-value-max-font-size: var(--font-size-4xl);
+    --stat-label-max-font-size: var(--font-size-2xl);
+  }
+  & .stat-label {
+    line-height: var(--line-height-normal);
+  }
+}
+
+.balloons {
+  max-width: 500px;
+}
+
+.dejavu-videos {
+  display: grid;
+  gap: var(--gap-4);
+  grid-auto-rows: 1fr;
+  justify-content: center;
+  grid-template-columns: repeat(2, minmax(45%, 560px));
+  align-self: stretch;
+  margin: var(--margin-4) 0;
+}
+
+.dejavu-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--border-radius);
+  background-color: var(--color-gray-100);
+  padding: var(--padding-4);
+  font-size: var(--font-size-l);
+  max-width: 100%;
+  text-align: center;
+  transition: background-color var(--transition-duration-1) ease-out;
+  text-decoration: none;
+  &:hover {
+    background-color: var(--color-gray-200);
+  }
+}
+
+// comment to force github actions to run
+.collaborator {
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: opacity var(--transition-duration-1) ease-out;
+  filter: grayscale(100%);
+
+  &:hover,
+  &:focus,
+  &:active {
+    filter: none;
+    opacity: 1;
+  }
+}
+
+.collaborator-logo {
+  max-width: 100%;
+  max-height: 3.75rem;
+}
+
+.sponsor-category {
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--margin-4);
+  border-bottom: 2px solid var(--color-gray-800);
+  padding: var(--padding-1) var(--padding-2);
+
+  &.host {
+    border-color: var(--color-red-500);
+  }
+  &.diamond {
+    border-color: var(--color-red-500);
+  }
+  &.gold {
+    border-color: var(--color-yellow-500);
+  }
+  &.silver {
+    border-color: var(--color-gray-600);
+  }
+  &.supporter {
+    border-color: var(--color-yellow-500);
+  }
+}
+
+// sponsors CSS extracted from
+// https://ishadeed.com/article/aligning-logos-css/
+.sponsors {
+  --sponsor-logo-width: 190px;
+  --sponsor-logo-height: 60px;
+  --multiplier: 1;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsor {
+  padding: var(--padding-2) var(--padding-4);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border: 1px solid transparent;
+  display: flex;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: var(--color-blue-400);
+  }
+
+  & :is(img, svg) {
+    display: block;
+    max-width: 100%;
+    width: calc(var(--sponsor-logo-width) * var(--multiplier));
+    height: calc(var(--sponsor-logo-height) * var(--multiplier));
+    object-fit: contain;
+    max-height: none;
+  }
+
+  & picture {
+    display: flex;
+  }
+}
+
+.diamond {
+  --multiplier: 1.8;
+}
+
+.platinum {
+  --multiplier: 1.5;
+}
+
+.gold {
+  --multiplier: 1.2;
+}
+
+.silver {
+}
+
+.bronze {
+}
+
+// patch for this specific logo
+.rsi {
+  --multiplier: 0.7;
+}
+
+@include responsive.medium {
+  .hero {
+    --hero-title-size: var(--font-size-7xl);
+    --hero-min-height: calc(100vh - 9.7rem);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-4);
+  }
+
+  .stats {
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: var(--padding-8) var(--padding-0);
+  }
+
+  .dejavu-videos {
+    grid-template-columns: repeat(4, 25%);
+    margin: var(--margin-4) var(--margin-6);
+  }
+
+  .dejavu-link {
+    width: 100%;
+  }
+
+  p {
+    font-size: var(--font-size-2xl);
+  }
+
+  .stats .stat-label {
+    line-height: var(--line-height-10);
+  }
+  .stat-label {
+    font-size: var(--font-size-xl);
+  }
+  .stat-value {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+// animate text as we scroll
+//@supports (animation-timeline: view()) {
+.animate-with-scroll {
+  & > span {
+    display: inline-block;
+    opacity: 0.2;
+    //filter: saturate(0.1) brightness(0.5);
+    //view-timeline: --subjectReveal block;
+    animation-timeline: view();
+    animation-name: highlight-text;
+    animation-fill-mode: both;
+    animation-duration: 1ms;
+  }
+
+  & > span:nth-of-type(1) {
+    animation-range: cover 0% cover 65%;
+  }
+  & > span:nth-of-type(2) {
+    animation-range: cover 45% cover 120%;
+  }
+}
+
+@keyframes highlight-text {
+  50% {
+    opacity: 1;
+    //rotate: 90deg;
+  }
+}
+//}

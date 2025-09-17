@@ -1,0 +1,26 @@
+<section class="limited-large content">
+  <h1>{{Tickets}}</h1>
+  <p>{{TicketsSellingMessage | safe}}</p>
+  {% macro renderSection(title, contents) %}
+    <section class="padding-top-6">
+      <h2>{{title}}</h2>
+      {% if contents | typeof == "array" %}
+        {% for content in contents %}
+          {{content | safe}}
+        {% endfor %}
+      {% else %}
+        {{contents | safe}}
+      {% endif %}
+    </section>
+  {% endmacro %}
+  {% set GetYourInvoice %}
+    <p>{{HowToGetYourInvoice}}</p>
+  {% endset %}
+  {{ renderSection(INeedInvoice, GetYourInvoice) }}
+  {{ renderSection(TransferTicket, HowToTransferTicket) }}
+  {{ renderSection(RefundPolicy, NoRefundPolicy) }}
+  {{ renderSection(CannotFindMyTicket, KnownTroubleshootsFindingTicket) }}
+  {{ renderSection(AreStudentAndUnemployedDicounts, StudentAndUnemployedRequirements) }}
+  {{ renderSection(CanPurchaseTicketsAtVenue, NoPurchaseAtVenue) }}
+  {{ renderSection(IsLunchIncluded, LunchIncluded) }}
+</section>

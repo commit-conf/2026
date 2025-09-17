@@ -1,0 +1,25 @@
+{% macro render(collaborator, folder, class = 'collaborator') %}
+  {% set name = collaborator.name %}
+  {% set url = collaborator.href %}
+  {% set isSvg = collaborator.svg %}
+  {% set sluggedName = name | slugify %}
+  <a href="{{url}}" target="_blank" class="{{class}} {{sluggedName}}" title="{{name}}" rel="noopener noreferrer">
+    {% if isSvg %}
+      <img src="/img/{{folder}}/optimized/{{sluggedName}}.svg" loading="lazy" alt="{{name}}" class="collaborator-logo {{sluggedName}}">
+    {% else %}
+      <picture>
+        <source srcset="/img/{{folder}}/optimized/{{sluggedName}}.avif" type="image/avif">
+        <source srcset="/img/{{folder}}/optimized/{{sluggedName}}.jpg" type="image/jpeg">
+        <img src="/img/{{folder}}/optimized/{{sluggedName}}.jpg" loading="lazy" alt="{{name}}" class="collaborator-logo {{sluggedName}}">
+      </picture>
+    {% endif %}
+  </a>
+{% endmacro %}
+
+{% macro renderCommunity(community) %}
+  {{ render(community, 'communities')}}
+{% endmacro %}
+
+{% macro renderSponsor(sponsor) %}
+  {{ render(sponsor, 'sponsors')}}
+{% endmacro %}

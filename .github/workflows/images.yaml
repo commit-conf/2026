@@ -1,0 +1,41 @@
+name: Images optimization
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "static/img/sponsors/*"
+      - "static/img/communities/*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Optimize sponsors and communities logos
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # you must check out the repository
+      - uses: actions/checkout@v3
+      # setup node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: "npm"
+      # install node dependencies
+      - run: npm i
+      # optimize images
+      - run: ./bin/optimize-images
+      # BUG: action will not launch another actions if we used the default checkout token
+      - name: Configure CI credentials
+        run: ./bin/configure-ci
+      - name: commit
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing to commit"
+          else
+            git add -A
+            git commit -m "CI - Images optimization"
+            git push
+          fi

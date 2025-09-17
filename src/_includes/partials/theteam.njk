@@ -1,0 +1,28 @@
+{% macro member(avatar, name, description, xAccount = '') %}
+  <picture aria-hidden class="avatar">
+    <source srcset="/img/team/{{avatar}}.avif" type="image/avif">
+    <source srcset="/img/team/{{avatar}}.jpg">
+    <img src="/img/team/{{avatar}}.jpg" alt="" />
+  </picture>
+  <div>
+    <p>
+      <b>{{name}}{% if xAccount %} <a href="https://x.com/@{{xAccount}}">@{{xAccount}}</a>{% endif %}</b>
+      <br>{{description}}
+    </p>
+  </div>
+
+{% endmacro %}
+
+<section class="limited-large content">
+  <h1>{{TheTeam}}</h1>
+  <p>{{WhoOrganizesCommitDescription}}</p>
+  <div class="team items-center">
+    {{ member('lvignali', 'Laura Vignali', LauraDesc, 'laura_vignali') }}
+    {{ member('aotero', 'Abraham Otero', AbrahamDesc) }}
+    {{ member('icoloma', 'Nacho Coloma', NachoDesc, 'nachocoloma') }}
+    {{ member('jengelmo', 'Joaquín Engelmo', JoaquinDesc) }}
+    {{ member('ccoloma', 'Carlos Coloma', CarlosDesc, 'ccescribano') }}
+    {{ member('jlee', 'Janine Lee', JanineDesc) }}
+  </div>
+
+</section>

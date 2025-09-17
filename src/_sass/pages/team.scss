@@ -1,0 +1,4 @@
+.team {
+  @extend .grid;
+  grid-template-columns: calc(min(30%, 200px)) 1fr;
+}

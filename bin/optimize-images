@@ -1,0 +1,95 @@
+#!/usr/bin/env node
+
+const sharp = require("sharp");
+const fs = require("fs");
+const { optimize } = require("svgo");
+
+function optimizeFolderImages({ sourceDir, size }) {
+  const destinationDir = `${sourceDir}/optimized`;
+  return new Promise((resolve, reject) => {
+    fs.readdir(sourceDir, { withFileTypes: true }, function (err, files = []) {
+      if (err) {
+        console.log("Unable to scan directory: " + err);
+        reject(err);
+      }
+      files.forEach((dirent) => {
+        if (dirent.isFile()) {
+          const file = dirent.name;
+          console.log("Optimizing image " + file);
+          let destinationFilename = file
+            .replace("[^a-zA-Z0-9]+", "-")
+            .replace(".jpeg", ".jpg")
+            .replace(".png", ".jpg");
+          if (file.endsWith(".svg")) {
+            try {
+              const data = fs.readFileSync(`${sourceDir}/${file}`, "utf8");
+              const result = optimize(data, {
+                path: `${destinationDir}/${destinationFilename}`,
+              });
+              fs.writeFileSync(
+                `${destinationDir}/${destinationFilename}`,
+                result.data
+              );
+            } catch (error) {
+              console.log(error);
+            }
+          } else {
+            let result = sharp(`${sourceDir}/${file}`)
+              .resize(size, undefined, {
+                withoutEnlargement: true,
+              })
+              .jpeg()
+              .flatten({ background: { r: 255, g: 255, b: 255 } });
+            result
+              .clone()
+              .toBuffer()
+              .then((data) => {
+                fs.writeFileSync(
+                  `${destinationDir}/${destinationFilename}`,
+                  data
+                );
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+            result
+              .clone()
+              .avif({ quality: 65 })
+              .toBuffer()
+              .then((data) => {
+                fs.writeFileSync(
+                  `${destinationDir}/${destinationFilename.replace(
+                    ".jpg",
+                    ".avif"
+                  )}`,
+                  data
+                );
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        }
+      });
+      resolve();
+    });
+  });
+}
+if (fs.existsSync("static/img/communities/optimized")) {
+  fs.rmSync("static/img/communities/optimized", { recursive: true });
+}
+if (fs.existsSync("static/img/sponsors/optimized")) {
+  fs.rmSync("static/img/sponsors/optimized", { recursive: true });
+}
+fs.mkdirSync("static/img/communities/optimized");
+fs.mkdirSync("static/img/sponsors/optimized", { recursive: true });
+Promise.all([
+  optimizeFolderImages({
+    sourceDir: "static/img/communities",
+    size: 240,
+  }),
+  optimizeFolderImages({
+    sourceDir: "static/img/sponsors",
+    size: 240,
+  }),
+]);

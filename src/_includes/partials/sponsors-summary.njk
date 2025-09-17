@@ -1,0 +1,23 @@
+<section>
+  <div class="limited-large content section-center">
+    <h1>{{OurSponsors}}</h1>
+    {% set sponsors = [] %}
+    {% for sponsorCategory in site.sponsors %}
+        {% for sponsor in sponsorCategory.items %}
+          {% set sponsors = (sponsors.push(sponsor), sponsors) %}
+        {% endfor %}
+      {% endfor %}
+    {% if site.sponsors | length != 1 %}
+      <div class="wide grid autofill-120 items-center padding-bottom-10 padding-top-10 text-center">
+      {% import "macros/collaborator-logo.njk" as logo %}
+      {% for sponsor in sponsors %}
+        {{ logo.renderSponsor(sponsor) }}
+      {% endfor %}
+      </div>
+      <div><small>{{AreYouInterested}}  <a href="/{{locale}}/sponsors">{{GetInContact}}</a></small></div>
+    {% else %}
+      <p>{{OurSponsorsDesc}}</p>
+      <a href="/{{locale}}/sponsors" class="button primary">{{GetInContact}}</a>
+    {% endif %}
+  </div>
+</section>

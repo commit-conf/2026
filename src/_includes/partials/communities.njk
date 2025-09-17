@@ -1,0 +1,13 @@
+<section class="section-center">
+  <div class="limited-large content">
+  <h1>{{OurCommunities}}</h1>
+  <p>{{OurCommunitiesDesc}}</p>
+  <div class="grid gap-1 autofill-120 padding-bottom-10 padding-top-10 items-center text-center">
+    {% import "macros/collaborator-logo.njk" as logo %}
+    {% for community in site.communities %}
+      {{ logo.renderCommunity(community) }}
+    {% endfor %}
+  </div>
+  <div><small>{{IsYourCommunityMissing | safe}}</small></div>
+    </div>
+</section>

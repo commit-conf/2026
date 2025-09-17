@@ -1,0 +1,13 @@
+<section>
+  <div class="limited-large content section-center">
+    <h1>{{DejavuTitle}}</h1>
+    <p>{{DejavuDesc}}</p>
+    <div class="dejavu-videos">
+      {% import "macros/youtube.njk" as youtube %}
+      {{ youtube.render(id="MaHQ2y1dryE", title="Guía rápida para integrar IA en tus aplicaciones desde 0 - Javier Ferrer y Rafa Gómez", ariaLabel="Click to play the recording of Guía rápida para integrar IA en tus aplicaciones desde 0 - Javier Ferrer y Rafa Gómez") }}
+      {{ youtube.render(id="Py-m6vzzQWI", title="Fuego y sangre. El camino del programador consciente - Nicolás Patarino", ariaLabel="Click to play the recording of Fuego y sangre. El camino del programador consciente - Nicolás Patarino") }}
+      {{ youtube.render(id="en1pJ4vAOr0", title="Arquitectura Hexagonal: La Nueva Colección Primavera/Verano, ¿Es útil para todo? - Andrea Lluch", ariaLabel="Click to play the recording of Arquitectura Hexagonal: La Nueva Colección Primavera/Verano, ¿Es útil para todo? - Andrea Lluch") }}
+      <a class="dejavu-link" href="https://2025.commit-conf.com" aria-label="{{ViewMoreDejavu}}">» {{MoreDejavu}}</a>
+    </div>
+  </div>
+</section>

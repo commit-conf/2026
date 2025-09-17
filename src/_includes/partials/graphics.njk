@@ -1,0 +1,74 @@
+<div class="limited-large">
+  {% set graph1 %}
+  <figure class="graph roles-graph text-center flex-column gap-2 items-center margin-top">
+    {# generated with https://donutsvg.luckyfox.design/ outer radius 90, inner radius 70, gap 2 and customized here (change viewBox, wrap path with <g> and add title)#}
+    <svg xmlns="http://www.w3.org/2000/svg" class="graph-svg" viewBox="0 0 280 200">
+      <g transform="translate(50,20)">
+        <g>
+          <path id="0" fill="#2f686e" d="M91.57071657935552, 0.013707435924786182 A90,90 0 0 1 162.1482953603279,36.19829485416947 L146.1153408358106,48.1542293310207 A70,70 0 0 0 91.22166845060984,20.010661339052618 Z"></path>
+          <text transform="translate(145,6)" text-anchor="middle" dx="1rem" dy=".35em">{{lt3Years}}</text>
+          <title>{{lt3Years}}: 15%</title>
+        </g>
+        <g>
+          <path id="1" fill="#3b8289" d="M163.98199699950192, 38.749008595289716 A90,90 0 0 1 162.97762363078425,142.67130574804085 L146.76037393505442,130.96657113736512 A70,70 0 0 0 147.54155322183482,50.138117796336445 Z"></path>
+          <text transform="translate(205,97)" text-anchor="middle" dx="0rem" dy=".35em">{{gt3Years}}</text>
+          <title>{{gt3Years}}: 20.2%</title>
+        </g>
+        <g>
+          <path id="2" fill="#469da5" d="M161.09496557298758, 145.18610214696912 A90,90 0 0 1 36.9076814341398,162.67190453883273 L48.7059744487754,146.52259241909212 A70,70 0 0 0 145.2960843345459,132.9225238920871 Z"></path>
+          <text transform="translate(171,164)" text-anchor="middle" dx="0rem" dy=".35em">{{gt5Years}}</text>
+          <title>{{gt5Years}}: 25.1%</title>
+        </g>
+        <g>
+          <path id="3" fill="#5ab0b8" d="M34.403810947286225, 160.77473958139944 A90,90 0 0 1 88.41357787377854,0.013982948252262872 L88.76611612404997,20.010875626418425 A70,70 0 0 0 46.75851962566706,145.0470196744218 Z"></path>
+          <text transform="translate(-36,46)" text-anchor="middle" dx="1rem" dy=".35em">{{gt10Years}}</text>
+          <title>{{gt10Years}}: 39.7%</title>
+        </g>
+      </g>
+    </svg>
+    <figcaption class="graph-title">Fig.1 {{AttendeeExperience}}</figcaption>
+  </figure>
+  {% endset %}
+  {% set graph2 %}
+  <figure class="graph roles-graph text-center flex-column gap-2 items-center margin-top">
+    {# generated with https://donutsvg.luckyfox.design/ outer radius 90, inner radius 70, gap 2 and customized here (change viewBox, wrap path with <g> and add title) #}
+    <svg xmlns="http://www.w3.org/2000/svg" class="graph-svg" viewBox="0 0 280 200">
+      <g transform="translate(50,20)">
+        <g>
+          <path id="0" fill="#4b5c7f" d="M91.57071657935552, 0.013707435924786182 A90,90 0 1 1 43.30214052788891,166.9370516768284 L53.67944263280249,149.83992908197766 A70,70 0 1 0 91.22166845060984,20.010661339052618 Z"></path>
+          <title>Developers: 59%</title>
+          <text transform="translate(204,130)" text-anchor="middle" dx="0rem" dy=".35em">Developers</text>
+        </g>
+        <g>
+          <path id="1" fill="#5b709b" d="M40.645523220849725, 165.2604519110556 A90,90 0 0 1 22.94334438670947,150.02836777691488 L37.844823411885145,136.68873049315602 A70,70 0 0 0 51.613184727327564,148.53590704193215 Z"></path>
+          <title>DevOps: 4.7%</title>
+          <text transform="translate(13,166)" text-anchor="middle" dx="0rem" dy=".35em">DevOps</text>
+        </g>
+        <g>
+          <path id="2" fill="#7d9dc9" d="M20.889233666211936, 147.6515565857206 A90,90 0 0 1 7.521261185832216,126.01746303703652 L25.849869811202836,118.01358236213952 A70,70 0 0 0 36.24718174038706,134.8400995666716 Z"></path>
+          <title>Data/ML/AI: 5%</title>
+          <text transform="translate(-17,141)" text-anchor="middle" dx="0rem" dy=".35em">Data/ML/AI</text>
+        </g>
+        <g>
+          <path id="3" fill="#909fbe" d="M6.3145136725233755, 123.11705569844219 A90,90 0 0 1 1.8305948096526663,108.05978926732958 L21.423795963063185,104.04650276347856 A70,70 0 0 0 24.91128841196263,115.75770998767726 Z"></path>
+          <title>Others: 3.3%</title>
+          <text transform="translate(-20,118)" text-anchor="middle" dx="0rem" dy=".35em">Others</text>
+        </g>
+        <g>
+          <path id="4" fill="#acb7ce" d="M1.2540276730539972, 104.97171986596513 A90,90 0 0 1 70.39850786472047,2.160478678042793 L74.7543950058937,21.680372305144402 A70,70 0 0 0 20.975354856819777,101.64467100686177 Z"></path>
+          <title>Managers: 24.8%</title>
+          <text transform="translate(-15,36)" text-anchor="middle" dx="0rem" dy=".35em">Managers</text>
+        </g>
+        <g>
+          <path id="5" fill="#e3e7ef" d="M73.47600364883957, 1.5299059309484164 A90,90 0 0 1 88.41357787377862,0.013982948252262872 L88.76611612405004,20.010875626418425 A70,70 0 0 0 77.14800283798633,21.189926835182092 Z"></path>
+          <title>Students: 3.2%</title>
+          <text transform="translate(79,-10)" text-anchor="middle" dx="0rem" dy=".35em">Students</text>
+        </g>
+      </g>
+    </svg>
+    <figcaption class="graph-title">Fig. 2 {{AttendeeJobRole}}</figcaption>
+  </figure>
+  {% endset %}
+  {% import "macros/columns.njk" as columns %}
+  {{ columns.render([{html: graph1}, {html: graph2}]) }}
+</div>

@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+const en = require("../src/en/en.json");
+const es = require("../src/es/es.json");
+const fs = require("fs");
+
+console.log("\nChecking i18n entries...\n");
+
+const enKeys = Object.keys(en);
+const esKeys = Object.keys(es);
+
+const enMissingKeys = enKeys.filter((key) => !esKeys.includes(key));
+const esMissingKeys = esKeys.filter((key) => !enKeys.includes(key));
+
+if (enMissingKeys.length > 0 || esMissingKeys.length > 0) {
+  if (enMissingKeys.length > 0) {
+    console.log(`Missing keys in es.json: \n\n${enMissingKeys.join(", ")}\n`);
+  }
+  if (esMissingKeys.length > 0) {
+    console.log(`Missing keys in en.json: \n\n${esMissingKeys.join(", ")}\n`);
+  }
+  process.exit(1);
+} else {
+  console.log("i18n entries are ok!\n");
+}
+
+function getAllFiles(dirPath) {
+  const files = [];
+  const dirents = fs.readdirSync(dirPath, { withFileTypes: true });
+  dirents.forEach(function (dirent) {
+    const resPath = `${dirPath}/${dirent.name}`;
+    if (dirent.isDirectory()) {
+      files.push(...getAllFiles(resPath));
+    } else {
+      files.push(resPath);
+    }
+  });
+  return files;
+}
+
+const unusedKeys = [];
+const filesWithi18n = getAllFiles("src/_includes");
+enKeys.forEach((key) => {
+  // check if the key is in any file at src/_includes/partials
+  const isInFile = filesWithi18n.some((file) => {
+    return fs.readFileSync(file, "utf8").includes(key);
+  });
+  if (!isInFile) {
+    unusedKeys.push(key);
+  }
+});
+
+if (unusedKeys.length !== 0) {
+  console.log(`There are i18n unused keys: ${unusedKeys.join(", ")}\n`);
+  process.exit(1);
+} else {
+  console.log("All i18n keys are used!\n");
+}

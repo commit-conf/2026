@@ -1,0 +1,62 @@
+{% if site.sponsors | length != 1 %}
+  <section class="limited-large content">
+    <h1>{{OurSponsors}}</h1>
+    {% import "macros/collaborator-logo.njk" as logo %}
+    {% for category in sponsors %}
+      <h2 class="sponsor-category {{category.name | slugify}}">{{category.name}}</h2>
+      <div class="gap-2 margin-bottom sponsors {{category.name | slugify}}">
+        {% for sponsor in category.items %}
+          {{ logo.render(sponsor, 'sponsors', 'flex-row items-center justify-center sponsor') }}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}
+
+<section class="limited-large content">
+  <h1>{{GetInvolved}}</h1>
+  {{GetInvolvedDesc | safe}}
+  {% 
+    set stats = [{
+      name: attendees,
+      value: "+1,000" if locale == 'en' else "+1.000"
+    }, {
+      name: speakers,
+      value: "80"
+    }, {
+      name: tracks,
+      value: 6
+    }, {
+      name: talks,
+      value: 70
+    }, {
+      name: followers,
+      value: "+9,3K" if locale == 'en' else "+9.3K"
+    }, {
+      name: youtubeVisualizations,
+      value: "+184K"
+    }, {
+      name: youtubeSubscribers,
+      value: "+5,5K" if locale == 'en' else "+5.5K"
+    }]
+  %}
+  <div class="grid autofill-120 padding-top-10 text-center items-start">
+    {% for stat in stats %}
+    <div class="stat flex-column">
+      <div class="stat-value">{{stat.value}}</div>
+      <div class="stat-label">{{stat.name}}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="limited-large content">
+  {% include "partials/graphics.njk" %}
+</section>
+
+<section class="limited-large content">
+  {{GetInvolvedBulletPoints | safe}}
+  <div class="text-center">
+    <a class="button primary margin-top" href="mailto:info@commit-conf.com">{{GetInContact}}</a>
+  </div>
+</section>

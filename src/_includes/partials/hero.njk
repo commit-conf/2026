@@ -1,0 +1,48 @@
+<meta itemprop="url" content="{{site.baseUrl}}">
+<meta itemprop="image" content="{{site.metaImage}}">
+<meta itemprop="startDate" content="2025-04-04T08:00">
+<meta itemprop="endDate" content="2025-04-05T18:30">
+<meta itemprop="eventStatus" content="EventScheduled">
+<meta itemprop="name" content="{{site.name}}">
+<div itemprop="location" itemscope="" itemtype="http://schema.org/Place">
+  <meta itemprop="name" content="Universidad CEU San Pablo">
+  <meta itemprop="address" content="Universidad CEU San Pablo, Campus de Montepríncipe. Boadilla del Monte, Madrid">
+  <meta itemprop="url" content="https://goo.gl/maps/X5eoF">
+</div>
+<div class="hero content flex-row items-center">
+  <img class="hero-image" src="/img/hero.avif" aria-hidden>
+  <div class="hero-text flex-grow flex-column items-center">
+    <img title="Commit Conference Logo" class="hero-logo" src="/svg/wlogo.svg">
+    <p class="hero-subtitle uppercase text-center">{{LocationAndDate}}</p>
+      <div class="hero-actions margin-top">
+        {# 
+        <a href="{{site.agendaURL}}" class="button primary uppercase">
+          {{Agenda}}
+          <br/><small>{{AgendaButtonDetails}}</small>
+        </a>
+        #}
+        {# 
+        <a href="{{site.photosURL}}" class="button uppercase" target="_blank">
+          {{Photos}}
+          <br/><small>{{PhotosButtonDetails}}</small>
+        </a>
+        #}
+        {# 
+        <a href="{{site.videosURL}}" class="button primary uppercase" target="_blank">
+          {{Videos}}
+          <br/><small>{{VideosButtonDetails}}</small>
+        </a>
+        #}
+        <a href="{{site.c4pURL}}" class="button primary uppercase" target="_blank">
+          {{C4P}}
+          <br/><small>{{C4PButtonDetails}}</small>
+        </a>    
+        {#
+        <a href="{{site.ticketsURL}}" class="button uppercase" target="_blank">
+          {{Tickets}}
+          <br/><small>{{TicketSellingButtonDetails}}</small>
+        </a>
+        #}   
+      </div>
+  </div>
+</div>

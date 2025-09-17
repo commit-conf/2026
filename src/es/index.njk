@@ -1,0 +1,18 @@
+---
+Title: Inicio
+---
+{% extends "layouts/base.njk" %} 
+{% block content %} 
+  <div itemscope="" itemtype="http://schema.org/Event">
+    {% include "partials/hero.njk" %}
+    {% include "partials/stats.njk" %}
+    {% include "partials/summary.njk" %}
+    <div class="bg-separator"></div>
+    {% include "partials/sponsors-summary.njk" %}
+    {% include "partials/diversity.njk" %}
+    {% include "partials/dejavu.njk" %}
+    <div class="bg-separator-2"></div>
+    {% include "partials/communities.njk" %}
+    {% include "partials/newsletter.njk" %}
+  </div>
+{% endblock %}

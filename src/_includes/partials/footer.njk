@@ -1,0 +1,71 @@
+<footer class="hide-for-print">
+  <div class="footer-row limited-large">
+    <div class="flex-grow">
+      <h2 class="footer-column-title">{{Contact}}</h2>
+      <ul class="unstyled">
+        <li>
+          <a class="footer-link" href="mailto:{{site.email}}">E-mail</a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://bsky.app/profile/commit-conf.com">Bluesky</a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://www.youtube.com/channel/{{site.youtubeChannel}}">YouTube</a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://x.com/{{site.xAccount}}">X</a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-grow">
+      <h2 class="footer-column-title">{{Links}}</h2>
+      <ul class="unstyled">
+        {#
+        <li>
+          <a class="footer-link" href="{{site.agendaURL}}">Agenda</a>
+        </li>
+        #}
+        <li>
+          <a class="footer-link" href="{{site.agendaURL}}">Call for Papers</a>
+        </li>
+        {#
+        <li>
+          <a class="footer-link" href="/{{locale}}/tickets">{{Tickets}}</a>
+        </li>
+        #}
+        <li>
+          <a class="footer-link" href="/{{locale}}/location">{{Location}}</a>
+        </li>
+        <li>
+          <a class="footer-link" href="/{{locale}}/sponsors">{{Sponsors}}</a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://blog.commit-conf.com">Blog</a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://2025.commit-conf.com">{{LastEdition}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-grow">
+      <h2 class="footer-column-title">{{AboutUs}}</h2>
+      <ul class="unstyled">
+        <li>
+          <a class="footer-link" href="/{{locale}}/privacy-policy">{{PrivacyPolicy}}</a>
+        </li>
+        <li>
+          <a class="footer-link" href="/{{locale}}/code-of-conduct">{{CodeOfConduct}}</a>
+        </li>
+        <li>
+          <a class="footer-link" href="/{{locale}}/terms-and-conditions">{{TermsAndConditions}}</a>
+        </li>
+        <li>
+          <a class="footer-link" href="/{{locale}}/team">{{TheTeam}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-row theme-2">
+    <a href="/{{locale}}" class="logo-footer" aria-label="{{goHome}}"></a>
+  </div>
+</footer>

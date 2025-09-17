@@ -1,0 +1,13 @@
+{% macro renderColumn(html, class='') %}
+  <div class="{{class}}">
+    {{ html | safe }}
+  </div>
+{% endmacro %}
+
+{% macro render(columns=[], class='') %}
+  <div class="limited-large grid {{class}}">
+    {% for column in columns %}
+      {{ renderColumn(column.html, column.class) }}
+    {% endfor %}
+  </div>
+{% endmacro %}

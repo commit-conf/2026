@@ -1,0 +1,26 @@
+#!/bin/bash
+# Check we have the same page content on every language
+
+echo ""
+echo "Comparing defined pages of each language..."
+echo ""
+
+enDir=./src/en
+esDir=./src/es
+
+exitCode=0
+
+# create a function with one parameter
+result=$(diff -a --recursive --exclude=404.njk --exclude=root.njk --exclude=en.json --exclude=es.json -I "Title" "$enDir" "$esDir")
+
+if [ -n "$result" ]; then
+  echo "The following pages are different:"
+  echo "=================================="
+  echo ""
+  echo "$result"
+  exitCode=1
+else
+  echo "All pages seems to be ok!"
+fi
+
+exit $exitCode
