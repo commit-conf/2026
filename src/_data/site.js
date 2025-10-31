@@ -6,6 +6,7 @@ module.exports = function () {
     buildTime: new Date(),
     baseUrl: "https://2026.commit-conf.com",
     metaImage: "https://2026.commit-conf.com/img/square-head.jpg",
+    locationURL: "https://maps.app.goo.gl/97cwy2ZduumDUWXf9",
     name: "Commit Conf",
     email: "info@commit-conf.com",
     xAccount: "@commitconf",

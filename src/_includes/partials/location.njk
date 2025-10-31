@@ -1,11 +1,11 @@
 <section class="limited-large content">
   <h1 class="lead">{{Where}}</h1>
   {{AddressDesc | safe}}
-  <a href="https://goo.gl/maps/X5eoF" target="_blank" title="{{ClickToOpenInGoogleMaps}}">
+  <a href="{{site.locationURL}}" target="_blank" title="{{ClickToOpenInGoogleMaps}}">
     <picture class="wide">
       <source srcset="/img/location/map-medium.avif" type="image/avif">
-      <source srcset="/img/location/map-medium.jpg" type="image/jpeg">
-      <img src="/img/location/map-medium.jpg" class="wide" alt="{{MapAlt}}">
+      <source srcset="/img/location/map-medium.png" type="image/jpeg">
+      <img src="/img/location/map-medium.png" class="wide" alt="{{MapAlt}}">
     </picture> 
   </a>
 </section>
@@ -17,29 +17,41 @@
     <li>
       <p>
         <img src="/svg/train.svg" class="metro" alt="Metro logo">
-        <a href="https://www.metromadrid.es/es/linea/ml3" target="_blank" rel="noopener noreferrer">
-          <span>Metro L3 (Montepríncipe)</span>
+        <a href="https://www.metromadrid.es/es/linea/linea-1" target="_blank" rel="noopener noreferrer">
+          <span>Metro L1 (Sierra de Guadalupe)</span>
+        </a>
+        <span>·</span>
+        <a href="https://www.renfe.com/es/es/cercanias/cercanias-madrid/lineas" target="_blank" rel="noopener noreferrer">
+          <span>Cercanías C2 (Vallecas)</span>
+        </a>
+        <span>·</span>
+        <a href="https://www.renfe.com/es/es/cercanias/cercanias-madrid/lineas" target="_blank" rel="noopener noreferrer">
+          <span>Cercanías C7 (Vallecas)</span>
         </a>
       </p>
     </li>
     <li>
       <p>
         <img src="/svg/bus.svg" class="bus" alt="Bus logo">
-        <a href="http://www.madridbuses.com/autobuses-interurbanos/horarios-571-madrid-pozuelo-de-alarcon-boadilla-del-monte.html" target="_blank" rel="noopener noreferrer">
-          <span>Bus 571</span>
+        <a href="https://www.madridbuses.com/autobuses-emt/horarios-58-madrid.html" target="_blank" rel="noopener noreferrer">
+          <span>Bus 58</span>
         </a>
         <span>·</span>
-        <a href="http://www.madridbuses.com/autobuses-interurbanos/horarios-573-madrid-pozuelo-de-alarcon-boadilla-del-monte.html" target="_blank" rel="noopener noreferrer">
-          <span>Bus 573</span>
+        <a href="https://www.madridbuses.com/autobuses-emt/horarios-63-madrid.html" target="_blank" rel="noopener noreferrer">
+          <span>Bus 63</span>
+        </a>
+        <span>·</span>
+        <a href="https://www.madridbuses.com/autobuses-emt/horarios-103-madrid.html" target="_blank" rel="noopener noreferrer">
+          <span>Bus 103</span>
+        </a>
+        <span>·</span>
+        <a href="https://www.madridbuses.com/autobuses-emt/horarios-145-madrid.html" target="_blank" rel="noopener noreferrer">
+          <span>Bus 145</span>
         </a>
       </p>
     </li>
   </ul>  
-</section>
-
-<section class="limited-large content">
-  <h2>{{FreeShuttles}}</h2>
-  {{FreeShuttlesDesc | safe}}
+  <p>{{MoreLocationInfo | safe}}</p>
 </section>
 
 <section class="limited-large content">
