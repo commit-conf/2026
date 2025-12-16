@@ -140,4 +140,8 @@ module.exports = [
     href: "https://sirviendocodigo.com", 
     svg: "true",
   },
+  {
+    name: "GitHub Community Spain",
+    href: "https://githubcommunity.es/",
+  },
 ];
