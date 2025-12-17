@@ -144,4 +144,8 @@ module.exports = [
     name: "GitHub Community Spain",
     href: "https://githubcommunity.es/",
   },
+  {
+    name: "Adopta Un Junior",
+    href: "https://adoptaunjunior.es/",
+  },
 ];
