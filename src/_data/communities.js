@@ -148,4 +148,8 @@ module.exports = [
     name: "Adopta Un Junior",
     href: "https://adoptaunjunior.es/",
   },
+  {
+    name: "Red Mujeres IA",
+    href: "https://www.linkedin.com/company/red-mujeres-ia/",
+  },
 ];
