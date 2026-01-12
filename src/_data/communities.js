@@ -152,4 +152,9 @@ module.exports = [
     name: "Red Mujeres IA",
     href: "https://www.linkedin.com/company/red-mujeres-ia/",
   },
+  {
+    name: "Arcasiles Group",
+    href: "https://arcasiles.com/",
+    svg: "true",
+  },
 ];
