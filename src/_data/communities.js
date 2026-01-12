@@ -13,10 +13,6 @@ module.exports = [
     svg: "true",
   },
   {
-    name: "CrossDvlup Madrid",
-    href: "https://www.meetup.com/CrossDvlup",
-  },
-  {
     name: "Frontend Developers Madrid",
     href: "https://www.meetup.com/es-ES/Front-end-Developers-Madrid/",
   },
