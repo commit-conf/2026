@@ -1,0 +1,26 @@
+name: Mirror 2026 content on the naked domain (gh-pages)
+
+on:
+  push:
+    branches:
+      - "gh-pages"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the 2026 repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Push to the naked domain repo (gh-pages)
+        run: |
+          git remote add target https://x-access-token:${{ secrets.NAKED_DOMAIN_TOKEN }}@github.com/commit-conf/naked-domain.git
+          git push target HEAD:gh-pages
