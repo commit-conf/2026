@@ -23,16 +23,15 @@ jobs:
           repository: ${{ github.repository }} # repo de origen
           ref: gh-pages
           fetch-depth: 0
-      - name: Configure git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: Push to target naked domain using gh CLI
         run: |
           # Clone the target repo
           gh repo clone commit-conf/naked-domain temp-naked
           cd temp-naked
+
+          # Configure git identity
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # Check if gh-pages branch exists, create it if not
           if git ls-remote --heads origin gh-pages | grep gh-pages; then
@@ -44,11 +43,23 @@ jobs:
             git rm -rf . || true
           fi
 
-          # Copy all files from source repo (excluding .git)
-          rsync -av --delete --exclude='.git' ../ ./
+          # Copy all files from source repo (excluding .git and temp-naked)
+          rsync -av --delete --exclude='.git' --exclude='temp-naked' ../ ./
 
           git add -A
-          git commit -m "Mirror from ${{ github.repository }} @ ${{ github.sha }}" || echo "No changes to commit"
+
+          # Commit and push - ensure we always commit to create the branch
+          if git diff --staged --quiet; then
+            echo "No changes detected"
+            # If branch was just created, make initial commit
+            if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
+              echo "Creating initial commit for new branch"
+              git commit --allow-empty -m "Initial commit for gh-pages"
+            fi
+          else
+            git commit -m "Mirror from ${{ github.repository }} @ ${{ github.sha }}"
+          fi
+
           git push origin gh-pages
         env:
           GH_TOKEN: ${{ secrets.NAKED_DOMAIN_TOKEN }}
