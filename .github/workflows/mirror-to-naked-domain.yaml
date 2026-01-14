@@ -23,8 +23,24 @@ jobs:
           repository: ${{ github.repository }} # repo de origen
           ref: gh-pages
           fetch-depth: 0
-      - name: Test repo access
-        run: git ls-remote https://x-access-token:${{ secrets.NAKED_DOMAIN_TOKEN }}@github.com/commit-conf/naked-domain.git
+      - name: Check if secret exists (without exposing it)
+        run: |
+          if [ -z "${{ secrets.NAKED_DOMAIN_TOKEN }}" ]; then
+            echo "ERROR: Secret is empty or not set"
+            exit 1
+          else
+            echo "Secret is set (length: ${#NAKED_DOMAIN_TOKEN})"
+          fi
+        env:
+          NAKED_DOMAIN_TOKEN: ${{ secrets.NAKED_DOMAIN_TOKEN }}
+
+      - name: Test with masked token
+        run: |
+          # This will show stars instead of the token
+          echo "Token starts with: ${TOKEN:0:4}****"
+          git ls-remote https://x-access-token:${TOKEN}@github.com/commit-conf/naked-domain.git
+        env:
+          TOKEN: ${{ secrets.NAKED_DOMAIN_TOKEN }}
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
