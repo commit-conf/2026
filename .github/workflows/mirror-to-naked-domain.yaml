@@ -49,6 +49,9 @@ jobs:
           # Copy all files from source repo (excluding .git and temp-naked)
           rsync -av --delete --exclude='.git' --exclude='temp-naked' ../ ./
 
+          # Ensure CNAME points to commit-conf.com (overwrite if exists)
+          echo "commit-conf.com" > CNAME
+
           git add -A
 
           # Commit and push - ensure we always commit to create the branch
