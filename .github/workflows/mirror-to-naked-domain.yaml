@@ -23,41 +23,32 @@ jobs:
           repository: ${{ github.repository }} # repo de origen
           ref: gh-pages
           fetch-depth: 0
-      - name: Check if secret exists (without exposing it)
-        run: |
-          if [ -z "${{ secrets.NAKED_DOMAIN_TOKEN }}" ]; then
-            echo "ERROR: Secret is empty or not set"
-            exit 1
-          else
-            echo "Secret is set (length: ${#NAKED_DOMAIN_TOKEN})"
-          fi
-        env:
-          NAKED_DOMAIN_TOKEN: ${{ secrets.NAKED_DOMAIN_TOKEN }}
-
-      - name: Test with masked token
-        run: |
-          # This will show stars instead of the token
-          echo "Token starts with: ${TOKEN:0:4}****"
-          echo "Testing ls-remote..."
-          git ls-remote https://x-access-token:${TOKEN}@github.com/commit-conf/naked-domain.git 2>&1 || echo "ls-remote failed with exit code $?"
-
-          echo "Testing with GIT_CURL_VERBOSE for debugging..."
-          GIT_CURL_VERBOSE=1 GIT_TRACE=1 git ls-remote https://x-access-token:${TOKEN}@github.com/commit-conf/naked-domain.git 2>&1 | head -20
-        env:
-          TOKEN: ${{ secrets.NAKED_DOMAIN_TOKEN }}
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Push to target naked domain
+      - name: Push to target naked domain using gh CLI
         run: |
-          # Try with gh CLI which handles auth better
-          echo "${TOKEN}" | gh auth login --with-token
-          gh auth status
+          # Clone the target repo
+          gh repo clone commit-conf/naked-domain temp-naked
+          cd temp-naked
 
-          git remote add target https://github.com/commit-conf/naked-domain.git
-          git push target HEAD:gh-pages --force
+          # Check if gh-pages branch exists, create it if not
+          if git ls-remote --heads origin gh-pages | grep gh-pages; then
+            echo "Branch gh-pages exists, checking out..."
+            git checkout gh-pages
+          else
+            echo "Branch gh-pages doesn't exist, creating orphan branch..."
+            git checkout --orphan gh-pages
+            git rm -rf . || true
+          fi
+
+          # Copy all files from source repo (excluding .git)
+          rsync -av --delete --exclude='.git' ../ ./
+
+          git add -A
+          git commit -m "Mirror from ${{ github.repository }} @ ${{ github.sha }}" || echo "No changes to commit"
+          git push origin gh-pages
         env:
-          TOKEN: ${{ secrets.NAKED_DOMAIN_TOKEN }}
           GH_TOKEN: ${{ secrets.NAKED_DOMAIN_TOKEN }}
