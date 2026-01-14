@@ -33,6 +33,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Update origin remote to use token authentication
+          git remote set-url origin https://oauth2:${GH_TOKEN}@github.com/commit-conf/naked-domain.git
+
           # Check if gh-pages branch exists, create it if not
           if git ls-remote --heads origin gh-pages | grep gh-pages; then
             echo "Branch gh-pages exists, checking out..."
