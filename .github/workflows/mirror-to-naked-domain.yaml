@@ -24,7 +24,7 @@ jobs:
           ref: gh-pages
           fetch-depth: 0
       - name: Test repo access
-      - run: git ls-remote https://x-access-token:${{ secrets.NAKED_DOMAIN_TOKEN }}@github.com/commit-conf/naked-domain.git
+        run: git ls-remote https://x-access-token:${{ secrets.NAKED_DOMAIN_TOKEN }}@github.com/commit-conf/naked-domain.git
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
