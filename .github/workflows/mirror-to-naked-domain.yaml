@@ -38,7 +38,11 @@ jobs:
         run: |
           # This will show stars instead of the token
           echo "Token starts with: ${TOKEN:0:4}****"
-          git ls-remote https://x-access-token:${TOKEN}@github.com/commit-conf/naked-domain.git
+          echo "Testing ls-remote..."
+          git ls-remote https://x-access-token:${TOKEN}@github.com/commit-conf/naked-domain.git 2>&1 || echo "ls-remote failed with exit code $?"
+
+          echo "Testing with GIT_CURL_VERBOSE for debugging..."
+          GIT_CURL_VERBOSE=1 GIT_TRACE=1 git ls-remote https://x-access-token:${TOKEN}@github.com/commit-conf/naked-domain.git 2>&1 | head -20
         env:
           TOKEN: ${{ secrets.NAKED_DOMAIN_TOKEN }}
       - name: Configure git
@@ -48,5 +52,12 @@ jobs:
 
       - name: Push to target naked domain
         run: |
-          git remote add target https://x-access-token:${{ secrets.NAKED_DOMAIN_TOKEN }}@github.com/commit-conf/naked-domain.git
+          # Try with gh CLI which handles auth better
+          echo "${TOKEN}" | gh auth login --with-token
+          gh auth status
+
+          git remote add target https://github.com/commit-conf/naked-domain.git
           git push target HEAD:gh-pages --force
+        env:
+          TOKEN: ${{ secrets.NAKED_DOMAIN_TOKEN }}
+          GH_TOKEN: ${{ secrets.NAKED_DOMAIN_TOKEN }}
