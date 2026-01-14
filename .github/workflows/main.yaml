@@ -13,6 +13,8 @@ on:
       - ".eleventy.js"
       - ".github/**"
       - "bin/**"
+    paths-ignore:
+      - ".github/workflows/mirror-to-naked-domain.yml"
   workflow_dispatch:
 
 jobs:

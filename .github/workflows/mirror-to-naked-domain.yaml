@@ -1,26 +1,37 @@
-name: Mirror 2026 content on the naked domain (gh-pages)
+name: Mirror gh-pages to the naked domain
 
 on:
-  push:
-    branches:
-      - "gh-pages"
+  workflow_run:
+    workflows: ["CI/CD"] # after other workflow
+    types:
+      - completed
+
+  # manual trigger
+  workflow_dispatch:
 
 jobs:
   sync:
+    # only if CI/CD finished OK or is a manual trigger
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout the 2026 repo
+      - name: Checkout origin gh-pages
         uses: actions/checkout@v4
         with:
+          repository: ${{ github.repository }} # repo de origen
+          ref: gh-pages
           fetch-depth: 0
 
+      # 2️⃣ Configuración de git
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Push to the naked domain repo (gh-pages)
+      # 3️⃣ Push al repo B usando tu PAT
+      - name: Push to target repo B
         run: |
           git remote add target https://x-access-token:${{ secrets.NAKED_DOMAIN_TOKEN }}@github.com/commit-conf/naked-domain.git
-          git push target HEAD:gh-pages
+          git push target HEAD:gh-pages --force
