@@ -23,15 +23,14 @@ jobs:
           repository: ${{ github.repository }} # repo de origen
           ref: gh-pages
           fetch-depth: 0
-
-      # 2️⃣ Configuración de git
+      - name: Test repo access
+      - run: git ls-remote https://x-access-token:${{ secrets.NAKED_DOMAIN_TOKEN }}@github.com/commit-conf/naked-domain.git
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 3️⃣ Push al repo B usando tu PAT
-      - name: Push to target repo B
+      - name: Push to target naked domain
         run: |
           git remote add target https://x-access-token:${{ secrets.NAKED_DOMAIN_TOKEN }}@github.com/commit-conf/naked-domain.git
           git push target HEAD:gh-pages --force
