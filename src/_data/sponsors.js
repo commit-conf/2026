@@ -9,6 +9,16 @@ module.exports = [
     ],
   },
   {
+    name: "Rocket",
+    items: [
+      {
+        name: "TomTom",
+        href: "https://www.tomtom.com/",
+        svg: "true",
+      },
+    ],
+  },
+  {
     name: "Booster",
     items: [
       {
@@ -19,10 +29,6 @@ module.exports = [
     ],
   },
   /*
-  {
-    name: "Rocket",
-    items: [],
-  },
   {
     name: "Partner",
     items: [],
