@@ -16,6 +16,11 @@ module.exports = [
         href: "https://www.tomtom.com/",
         svg: "true",
       },
+      {
+        name: "Facephi",
+        href: "https://facephi.com/",
+        svg: "true",
+      },
     ],
   },
   {
