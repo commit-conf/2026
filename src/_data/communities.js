@@ -153,4 +153,8 @@ module.exports = [
     href: "https://arcasiles.com/",
     svg: "true",
   },
+  {
+    name: "DLA",
+    href: "https://www.linkedin.com/company/artdla/",
+  },
 ];
