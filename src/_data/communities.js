@@ -157,4 +157,8 @@ module.exports = [
     name: "DLA",
     href: "https://www.linkedin.com/company/artdla/",
   },
+  {
+    name: "Tech Riders",
+    href: "https://techriders.tajamar.es/",
+  },
 ];
