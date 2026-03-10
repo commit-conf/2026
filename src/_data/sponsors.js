@@ -21,6 +21,14 @@ module.exports = [
         href: "https://facephi.com/",
         svg: "true",
       },
+      {
+        name: "Sopra Steria",
+        href: "https://www.soprasteria.es/",
+      },
+      {
+        name: "Izertis",
+        href: "https://www.izertis.com/es/",
+      },
     ],
   },
   {
