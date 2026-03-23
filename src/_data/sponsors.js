@@ -29,6 +29,10 @@ module.exports = [
         name: "Izertis",
         href: "https://www.izertis.com/es/",
       },
+      {
+        name: "Thoughtworks",
+        href: "https://www.thoughtworks.com/es-es",
+      },
     ],
   },
   {
