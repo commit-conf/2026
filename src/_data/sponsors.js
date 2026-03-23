@@ -39,6 +39,10 @@ module.exports = [
         href: "https://www.caixabanktech.com/es/pagina-de-inicio/",
         svg: "true",
       },
+      {
+        name: "Technosylva",
+        href: "https://technosylva.com/es/",
+      },
     ],
   },
   /*
