@@ -161,4 +161,9 @@ module.exports = [
     name: "Tech Riders",
     href: "https://techriders.tajamar.es/",
   },
+  {
+    name: "step4ward",
+    href: "https://step4ward.es/",
+    svg: "true",
+  },
 ];
