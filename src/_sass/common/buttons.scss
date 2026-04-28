@@ -16,7 +16,9 @@
 
   margin: var(--margin-0) var(--margin-2) var(--margin-4) var(--margin-0);
   font-size: var(--font-size-xl);
-  transition: color 0.4s ease-out, background-color 0.4s ease-out;
+  transition:
+    color 0.4s ease-out,
+    background-color 0.4s ease-out;
   small,
   .small {
     font-size: 80%;
@@ -43,6 +45,19 @@
       --button-fg-color: var(--color-secondary-fg);
       --button-bg-color: var(--color-secondary-border);
       --button-border-color: var(--color-secondary-border-darker);
+    }
+  }
+  &.outline {
+    --button-fg-bg: transparent;
+    --button-bg-color: #{var(--color-gray-800)}12;
+
+    --button-border-color: var(--color-primary-bg);
+    &:hover,
+    &:focus,
+    &:active {
+      --button-fg-bg: transparent;
+      --button-bg-color: #{var(--color-gray-800)}12;
+      --button-border-color: var(--color-primary-bg);
     }
   }
 }
