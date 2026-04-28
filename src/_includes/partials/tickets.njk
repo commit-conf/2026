@@ -1,6 +1,9 @@
 <section class="limited-large content">
   <h1>{{Tickets}}</h1>
   <p>{{TicketsSellingMessage | safe}}</p>
+  <div class="text-center"><a href="{{site.ticketsURL}}" class="button primary" target="_blank">
+          {{GetYourTickets}}
+        </a></div>
   {% macro renderSection(title, contents) %}
     <section class="padding-top-6">
       <h2>{{title}}</h2>
