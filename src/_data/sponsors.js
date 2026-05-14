@@ -38,6 +38,10 @@ module.exports = [
         href: "https://www.inditexpeople.com/es/es/joinus?countries=183&specialties=45#tecnolog%C3%ADa",
         svg: "true",
       },
+      {
+        name: "Fever",
+        href: "https://feverup.com/es/madrid?srsltid=AfmBOoohjNyqExlxxCLa0r7WEOxOg4XRE2MvR7sdm7c16T5eeySPRLon",
+      },
     ],
   },
   {
