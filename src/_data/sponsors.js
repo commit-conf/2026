@@ -56,6 +56,10 @@ module.exports = [
         name: "Technosylva",
         href: "https://technosylva.com/es/",
       },
+       {
+        name: "Click And Pic",
+        href: "https://clickandpic.es/",
+      },
     ],
   },
   /*
